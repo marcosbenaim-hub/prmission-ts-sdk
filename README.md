@@ -24,7 +24,7 @@ The official TypeScript SDK for Prmission — a consent-gated escrow protocol fo
 
 👉 https://prmission-demo123.netlify.app
 
-## 🖥 Interface Preview
+## 🖥 Interactive Interface
 
 <img width="523" height="544" alt="Prmission demo interface" src="https://github.com/user-attachments/assets/7154fdfc-8d20-4fae-8a69-bdccb6dffd96" />
 
