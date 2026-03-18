@@ -40,6 +40,7 @@ Simulates the full flow:
 
 ```bash
 npm install prmission-sdk
+```
 import { PrmissionClient, parseUsdc, formatUsdc } from "prmission-sdk";
 import { ethers } from "ethers";
 
