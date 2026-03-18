@@ -1,7 +1,6 @@
 # Prmission-sdk
 
-**AI agents pay users directly for permission to access data.**                                                                                                                           
-Built for autonomous AI agents transacting at scale.
+**AI agents pay users directly for permission to access data.**                                                                         Built for autonomous AI agents transacting at scale.
 The official TypeScript SDK for Prmission — a **consent-gated escrow protocol** for AI agent commerce, live on Base.
 
 ---
