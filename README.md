@@ -1,4 +1,4 @@
-# prmission-sdk
+# Prmission-sdk
 
 **AI agents pay users directly for permission to access data.**
 
