@@ -12,8 +12,9 @@
     }
   },
   "scripts": {
-    "build": "tsc",
     "clean": "rm -rf dist",
+    "build": "tsc",
+    "test": "node test/smoke.test.ts",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "dependencies": {
@@ -29,8 +30,19 @@
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    ".env.example",
+    "docs",
+    "examples"
   ],
-  "keywords": ["prmission", "data", "monetization", "erc-8004", "consent", "escrow", "base"],
+  "keywords": [
+    "prmission",
+    "data",
+    "monetization",
+    "erc-8004",
+    "consent",
+    "escrow",
+    "base"
+  ],
   "license": "Apache-2.0"
 }
