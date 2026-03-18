@@ -28,6 +28,10 @@ Simulates:
 
 ## 🚀 60-Second Quickstart
 
+```bash
+npm install prmission-sdk
+```
+
 🧠 What This Is
 
 Prmission is the economic layer for AI agents.
