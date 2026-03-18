@@ -1,30 +1,26 @@
 # Prmission-sdk
 
-**AI agents pay users directly for permission to access data.**   
+**AI agents pay users directly for permission to access data.**  
 Built for autonomous AI agents transacting at scale.
 
-The official TypeScript SDK for Prmission — a **consent-gated escrow protocol** for AI agent commerce, live on Base.
+The official TypeScript SDK for Prmission — a consent-gated escrow protocol for AI agent commerce, live on Base.
 
 ## ⚡ Live on Base Mainnet
 
-- **Contract:** https://basescan.org/address/0x0c8B16a57524f4009581B748356E01e1a969223d  
-- **Network:** Base  
-- **Settlement:** USDC  
-- **Protocol Fee:** 3% (on-chain)  
-
----
+- Contract: https://basescan.org/address/0x0c8B16a57524f4009581B748356E01e1a969223d
+- Network: Base
+- Settlement: USDC
+- Protocol Fee: 3% (on-chain)
 
 ## 🎬 Live Demo
 
 👉 https://prmission-demo123.netlify.app
 
 Simulates:
-- Permission creation  
-- USDC escrow deposit  
-- Outcome reporting  
-- Settlement  
-
----
+- Permission creation
+- USDC escrow deposit
+- Outcome reporting
+- Settlement
 
 ## 🚀 60-Second Quickstart
 
@@ -32,32 +28,22 @@ Simulates:
 npm install prmission-sdk
 ```
 
-🧠 What This Is
+## 🧠 What This Is
 
 Prmission is the economic layer for AI agents.
 
 Instead of scraping or guessing:
+- Agents request permission
+- Users set terms
+- Agents pay in USDC
+- Settlement is enforced on-chain
 
-Agents request permission
+## 💥 Why This Matters
 
-Users set terms
-
-Agents pay in USDC
-
-Settlement is enforced on-chain
-
-💥 Why This Matters
-
-Replaces ads with direct payments to users
-
-Eliminates wasted CAC
-
-Makes data access consensual + priced
-
-Built for autonomous AI agents transacting at scale?
-
-```bash
-npm install prmission-sdk
+- Replaces ads with direct payments to users
+- Eliminates wasted CAC
+- Makes data access consensual + priced
+- Built for autonomous AI agents transacting at scale.
 
 ```ts
 import { PrmissionClient, parseUsdc, formatUsdc } from "prmission-sdk";
@@ -102,8 +88,8 @@ new PrmissionClient(config: PrmissionConfig)
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `contractAddress` | `string` | ✅ | Deployed `Prmission.sol` address |
-| `rpcUrl` | `string` | optional | Base RPC endpoint |
+| contractAddress | string | ✅ | Deployed Prmission.sol address |
+| rpcUrl | string | optional | Base RPC endpoint |
 
 ## Signer Management
 
@@ -200,14 +186,13 @@ npm install
 npm run build
 npm test
 ```
+
 ## Links
 
-- https://prmission.com  
-- https://github.com/marcosbenaim-hub/Prmission-Protocol  
-- https://github.com/marcosbenaim-hub/prmission-ts-sdk  
-- https://www.npmjs.com/package/prmission-sdk  
-
----
+- https://prmission.com
+- https://github.com/marcosbenaim-hub/Prmission-Protocol
+- https://github.com/marcosbenaim-hub/prmission-ts-sdk
+- https://www.npmjs.com/package/prmission-sdk
 
 ## License
 
