@@ -1,4 +1,4 @@
-# prmission-sdk
+# Prmission-sdk
 
 [![npm](https://img.shields.io/npm/v/prmission-sdk.svg)](https://www.npmjs.com/package/prmission-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
