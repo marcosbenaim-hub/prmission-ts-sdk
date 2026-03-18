@@ -1,5 +1,5 @@
 {
-  "name": "@prmission/sdk",
+  "name": "prmission-sdk",
   "version": "2.0.0",
   "description": "TypeScript SDK for the Prmission Protocol — consent-gated data exchange with ERC-8004 trust verification",
   "type": "module",
