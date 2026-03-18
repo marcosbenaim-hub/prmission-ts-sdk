@@ -15,6 +15,7 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "test": "node test/smoke.test.ts",
+    "example": "node examples/basic.ts",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "dependencies": {

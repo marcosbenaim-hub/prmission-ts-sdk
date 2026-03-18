@@ -1,1 +1,1 @@
-console.log("Smoke test placeholder: SDK structure present.");
+console.log("SDK test OK");

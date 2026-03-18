@@ -1,0 +1,46 @@
+npm install @prmission/sdk ethers
+import { PrmissionClient, parseUsdc } from "@prmission/sdk";
+import { ethers } from "ethers";
+
+const client = new PrmissionClient({
+  contractAddress: "0x0c8B16a57524f4009581B748356E01e1a969223d",
+  rpcUrl: "https://mainnet.base.org",
+});
+
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, client.provider);
+client.connect(wallet);
+
+// 1. Grant permission
+const permissionId = await client.grantPermission({
+  merchant: "0x0000000000000000000000000000000000000000",
+  dataCategory: "purchase_intent",
+  purpose: "personalized offers",
+  compensationBps: 2000,
+  upfrontFee: parseUsdc("1"),
+  validityPeriod: 86400,
+});
+
+// 2. Deposit escrow
+const escrowId = await client.depositEscrow(
+  permissionId,
+  parseUsdc("50")
+);
+
+// 3. Settle
+await client.settle(escrowId);
+import { PrmissionClient, parseUsdc } from "@prmission/sdk";
+import { ethers } from "ethers";
+
+const client = new PrmissionClient({
+  contractAddress: "0x0c8B16a57524f4009581B748356E01e1a969223d",
+  rpcUrl: "https://mainnet.base.org",
+});
+
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, client.provider);
+client.connect(wallet);
+
+// 1. Grant permission
+const permissionId = await client.grantPermission({
+  merchant: "0x0000000000000000000000000000000000000000",
+  dataCategory: "purchase_intent",
+  purpose: "personaliz
