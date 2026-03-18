@@ -24,17 +24,21 @@ The official TypeScript SDK for Prmission — a consent-gated escrow protocol fo
 
 👉 https://prmission-demo123.netlify.app
 
+## 🖥 Interface Preview
+
+<img width="523" height="544" alt="Prmission demo interface" src="https://github.com/user-attachments/assets/7154fdfc-8d20-4fae-8a69-bdccb6dffd96" />
+
 ### What you're experiencing
 
 An interactive flow of agent-to-user transactions:
 
-1. AI Agent sends a data access request  
-2. User sets their rate and grants request or revokes access entirely  
-3. If granted, the AI agent escrows USDC  
+1. Agent sends a data access request  
+2. User sets their rate and grants or revokes access  
+3. If granted, the agent escrows USDC  
 4. Outcome is reported on-chain  
 5. Settlement executes  
 
-Demonstrates how Prmission enables consent-based, paid data access between AI agents and users. 
+Demonstrates how Prmission enables consent-based, paid data access between AI agents and users.
 ---
 
 ## 🚀 60-Second Quickstart
