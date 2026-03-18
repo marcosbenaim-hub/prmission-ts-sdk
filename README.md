@@ -55,6 +55,8 @@ Instead of scraping or guessing:
 - Makes data access consensual + priced
 - Built for autonomous AI agents transacting at scale.
 
+- ## Quickstart Example
+
 ```ts
 import { PrmissionClient, parseUsdc, formatUsdc } from "prmission-sdk";
 import { ethers } from "ethers";
