@@ -1,5 +1,3 @@
-cd ~/prmission-ts-sdk
-cat > README.md <<'EOF'
 # prmission-sdk
 
 The official TypeScript SDK for [Prmission Protocol](https://github.com/marcosbenaim-hub/Prmission-Protocol) — consent-gated escrow and USDC settlement for AI agent commerce on Base.
