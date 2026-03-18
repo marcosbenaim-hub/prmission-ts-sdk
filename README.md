@@ -1,3 +1,5 @@
+cd ~/prmission-ts-sdk
+cat > README.md <<'EOF'
 # prmission-sdk
 
 The official TypeScript SDK for [Prmission Protocol](https://github.com/marcosbenaim-hub/Prmission-Protocol) — consent-gated escrow and USDC settlement for AI agent commerce on Base.
@@ -43,18 +45,15 @@ npm install prmission-sdk
 import { PrmissionClient, parseUsdc, formatUsdc } from "prmission-sdk";
 import { ethers } from "ethers";
 
-// Read-only — no signer needed
 const client = new PrmissionClient({
   contractAddress: "0x0c8B16a57524f4009581B748356E01e1a969223d",
   rpcUrl: "https://mainnet.base.org",
 });
 
-// Write operations — connect a signer first
 const provider = new ethers.BrowserProvider(window.ethereum);
 const signer = await provider.getSigner();
 client.connect(signer);
 
-// 1. User grants permission
 const permissionId = await client.grantPermission({
   dataCategory: "browsing-history",
   purpose: "ad personalisation",
@@ -62,13 +61,11 @@ const permissionId = await client.grantPermission({
   validityPeriod: 86400,
 });
 
-// 2. Agent deposits escrow
 const escrowId = await client.depositEscrow(
   permissionId,
   parseUsdc("50.00"),
 );
 
-// 3. Agent reports outcome
 await client.reportOutcome({
   escrowId,
   outcomeValue: parseUsdc("50.00"),
@@ -76,34 +73,41 @@ await client.reportOutcome({
   outcomeDescription: "User clicked sponsored result",
 });
 
-// 4. Settle after 24h dispute window
 await client.settle(escrowId);
 new PrmissionClient(config: PrmissionConfig)
-| Parameter         | Type     | Required | Description                                                        |
-| ----------------- | -------- | -------- | ------------------------------------------------------------------ |
-| `contractAddress` | `string` | ✅        | Deployed `Prmission.sol` address                                   |
-| `rpcUrl`          | `string` | optional | Base RPC endpoint. Defaults to `ethers.getDefaultProvider("base")` |
-client.connect(signer): PrmissionClient
+| Parameter       | Type   | Required | Description                    |
+| --------------- | ------ | -------- | ------------------------------ |
+| contractAddress | string | ✅        | Deployed Prmission.sol address |
+| rpcUrl          | string | optional | Base RPC endpoint              |
+
+client.connect(signer)
+
 await client.ensureAllowance(amount)
 await client.getBalance(address)
+
 await client.grantPermission({...})
 await client.revokePermission(permissionId)
 await client.expirePermission(permissionId)
+
 await client.getPermission(permissionId)
 await client.getUserPermissions(user)
 await client.getActivePermissions(user)
 await client.checkAccess(permissionId, agent)
+
 await client.depositEscrow(permissionId, amount)
 await client.reportOutcome({...})
 await client.disputeSettlement(escrowId, reason)
 await client.settle(escrowId)
 await client.refundEscrow(escrowId)
+
 await client.getEscrow(escrowId)
 await client.previewSettlement(escrowId)
+
 await client.checkAgentTrust(agentId, agentAddress)
 await client.getTrustedReviewers()
 await client.isIdentityEnforced()
 await client.isReputationEnforced()
+
 await client.getTotalProtocolFees()
 await client.getTreasury()
 PrmissionClient.calculateSettlement(...)
@@ -119,15 +123,15 @@ cd prmission-ts-sdk
 npm install
 npm run build
 npm test
-Links
+## Links
 
-Website: https://prmission.com
+- https://prmission.com  
+- https://github.com/marcosbenaim-hub/Prmission-Protocol  
+- https://github.com/marcosbenaim-hub/prmission-ts-sdk  
+- https://www.npmjs.com/package/prmission-sdk  
 
-Protocol: https://github.com/marcosbenaim-hub/Prmission-Protocol
+---
 
-SDK: https://github.com/marcosbenaim-hub/prmission-ts-sdk
-
-npm: https://www.npmjs.com/package/prmission-sdk
-License
+## License
 
 MIT
