@@ -29,6 +29,30 @@ Simulates:
 
 ## 🚀 60-Second Quickstart
 
+🧠 What This Is
+
+Prmission is the economic layer for AI agents.
+
+Instead of scraping or guessing:
+
+Agents request permission
+
+Users set terms
+
+Agents pay in USDC
+
+Settlement is enforced on-chain
+
+💥 Why This Matters
+
+Replaces ads with direct payments to users
+
+Eliminates wasted CAC
+
+Makes data access consensual + priced
+
+Built for autonomous AI agents transacting at scale?
+
 ```bash
 npm install prmission-sdk
 
