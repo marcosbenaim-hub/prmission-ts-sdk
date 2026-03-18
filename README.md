@@ -1,26 +1,36 @@
-# Prmission-sdk
+# prmission-sdk
 
-**AI agents pay users directly for permission to access data.**  
-Built for autonomous AI agents transacting at scale.
+[![npm](https://img.shields.io/npm/v/prmission-sdk.svg)](https://www.npmjs.com/package/prmission-sdk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Base Mainnet](https://img.shields.io/badge/Base-Mainnet-0052FF.svg)](https://basescan.org/address/0x0c8B16a57524f4009581B748356E01e1a969223d)
+
+**The economic layer for AI agent commerce.**  
+AI agents pay users directly for permission to access data.
 
 The official TypeScript SDK for Prmission — a consent-gated escrow protocol for AI agent commerce, live on Base.
 
+---
+
 ## ⚡ Live on Base Mainnet
 
-- Contract: https://basescan.org/address/0x0c8B16a57524f4009581B748356E01e1a969223d
-- Network: Base
-- Settlement: USDC
-- Protocol Fee: 3% (on-chain)
+- **Contract:** https://basescan.org/address/0x0c8B16a57524f4009581B748356E01e1a969223d  
+- **Network:** Base  
+- **Settlement:** USDC  
+- **Protocol Fee:** 3% (on-chain)  
+
+---
 
 ## 🎬 Live Demo
 
 👉 https://prmission-demo123.netlify.app
 
 Simulates:
-- Permission creation
-- USDC escrow deposit
-- Outcome reporting
-- Settlement
+- Permission creation  
+- USDC escrow deposit  
+- Outcome reporting  
+- Settlement  
+
+---
 
 ## 🚀 60-Second Quickstart
 
