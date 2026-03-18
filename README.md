@@ -55,10 +55,14 @@ Instead of scraping or guessing:
 
 ## 💥 Why This Matters
 
-- Users choose to grant/deny AI agents requests
-- Users are in full control
-- Makes data access consensual + priced
-- Prevents unauthorized data access by AI agents, while enabling agents to access high-quality, consented data from real users.
+Prevents unauthorized data access by AI agents, while enabling agents to access high-quality, consented data from real users.
+
+- Replaces ads with direct payments to users  
+- Eliminates wasted CAC by paying for guaranteed engagement  
+- Converts data access from extraction → explicit permission  
+- Ensures compliance by design through on-chain consent  
+- Unlocks high-signal data for agents instead of noisy scraped data  
+- Built for autonomous agents transacting at scale  
 
 - ## Quickstart Example
 
