@@ -1,36 +1,28 @@
-// @prmission/sdk — TypeScript SDK for Prmission Protocol v2
-//
-// Usage:
-//   import { PrmissionClient, parseUsdc, formatUsdc } from "@prmission/sdk";
-//
-//   const client = new PrmissionClient({
-//     contractAddress: "0x...",
-//     rpcUrl: "https://mainnet.base.org",
-//   });
+/**
+ * prmission-sdk
+ *
+ * Public, API-first exports. Deep imports are intentionally not supported.
+ */
 
-export { PrmissionClient, formatUsdc, parseUsdc } from "./client.js";
-export { PRMISSION_ABI, ERC20_ABI } from "./abi/index.js";
+export * from "./public/index.js";
+export { formatUsdc, parseUsdc } from "./client.js";
 export {
-  // Enums
-  PermissionStatus,
   EscrowStatus,
-  // Types
-  type Permission,
-  type Escrow,
-  type PermissionDetails,
-  type EscrowDetails,
-  type SettlementPreview,
-  type AgentTrustProfile,
+  PermissionStatus,
   type AccessCheck,
-  type PrmissionConfig,
+  type AgentTrustProfile,
   type DataCategory,
-  // Constants
+  type Escrow,
+  type EscrowDetails,
+  type Permission,
+  type PermissionDetails,
+  type SettlementPreview,
+  ADDRESSES,
+  BPS_DENOMINATOR,
   DATA_CATEGORIES,
+  DISPUTE_WINDOW_SECONDS,
   PRICE_RANGES,
   PROTOCOL_FEE_BPS,
-  BPS_DENOMINATOR,
-  DISPUTE_WINDOW_SECONDS,
   REVOCATION_GRACE_SECONDS,
   USDC_DECIMALS,
-  ADDRESSES,
 } from "./types.js";

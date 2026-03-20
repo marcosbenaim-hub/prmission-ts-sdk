@@ -1,3 +1,6 @@
 node_modules/
 dist/
+dist_examples/
+dist_test/
+examples/ui/dist/
 *.tgz

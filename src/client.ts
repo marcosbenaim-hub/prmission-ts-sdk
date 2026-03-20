@@ -38,7 +38,12 @@ import {
  * const id = await client.grantPermission({ ... });
  * ```
  */
-export class PrmissionClient {
+/**
+ * Internal, throw-based client used by the public API wrapper.
+ *
+ * Not exported from the package entrypoint.
+ */
+export class PrmissionClientCore {
   readonly contract: ethers.Contract;
   readonly provider: ethers.Provider;
   private _paymentToken: ethers.Contract | null = null;
@@ -64,7 +69,7 @@ export class PrmissionClient {
    * Connect a signer for write operations.
    * Call this before any state-changing methods.
    */
-  connect(signer: ethers.Signer): PrmissionClient {
+  connect(signer: ethers.Signer): PrmissionClientCore {
     this._signer = signer;
     this.contract.connect(signer);
     return this;

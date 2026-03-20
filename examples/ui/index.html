@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prmission SDK UI</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="header">
+        <div class="title">
+          <div class="badge">Prmission</div>
+          <h1>SDK UI Playground</h1>
+        </div>
+        <p class="subtitle">
+          Verify read and write methods against Base. All operations return
+          Result values; errors are displayed verbosely.
+        </p>
+      </header>
+
+      <main class="grid">
+        <section class="card span2">
+          <h2>Simple Flow </h2>
+          <p class="muted">
+            This is the whole Prmission process in plain language:
+            permission (you say yes) → escrow (agent locks USDC) → outcome (agent reports what happened) → settlement (money splits after a dispute window).
+          </p>
+          <div class="row">
+            <button id="connectWallet" class="primary">Step 1: Connect Wallet</button>
+            <button id="disconnectWallet" class="ghost">Disconnect</button>
+            <button id="switchBase" class="ghost">Switch to Base</button>
+            <button id="toggleAdvanced" class="ghost">Show Advanced</button>
+          </div>
+          <div class="muted" id="walletInfo">No wallet connected.</div>
+          <div class="muted" id="clientInfo">Client not ready.</div>
+          <div class="links" id="scanLinks"></div>
+
+          <div class="details" style="margin-top: 12px;">
+            <strong>Inputs</strong>
+            <div class="row">
+              <label class="field">
+                <span>What data?</span>
+                <input id="sDataCategory" value="browsing" />
+              </label>
+              <label class="field">
+                <span>Why?</span>
+                <input id="sPurpose" value="consented data access" />
+              </label>
+              <label class="field">
+                <span>Your share (%)</span>
+                <input id="sSharePercent" value="20" />
+              </label>
+              <label class="field">
+                <span>Escrow amount (USDC)</span>
+                <input id="sEscrowUsdc" value="0.01" />
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <button id="sCreatePermission" class="primary">
+              Step 2: Create Permission
+            </button>
+            <button id="sDepositEscrow" class="primary">
+              Step 3: Deposit Escrow
+            </button>
+            <button id="sReportOutcome" class="primary">
+              Step 4: Report Outcome
+            </button>
+            <button id="sPreviewSettlement" class="ghost">
+              Step 5: Preview Settlement
+            </button>
+            <button id="sSettle" class="ghost">
+              Step 6: Settle (after dispute window)
+            </button>
+            <button id="sDemoSettle" class="ghost" title="No on-chain transaction; for demo only.">
+              Settle Now (demo, no tx)
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="muted" id="sIds">
+              Permission: (none) | Escrow: (none)
+            </div>
+          </div>
+
+          <details class="details" open>
+            <summary>What just happened?</summary>
+            <div class="muted" id="simpleNarrative">
+              Click “Connect Wallet” to start.
+            </div>
+          </details>
+        </section>
+
+        <section class="card advanced">
+          <h2>Client Config (Advanced)</h2>
+          <div class="row">
+            <label class="field">
+              <span>Network</span>
+              <select id="network">
+                <option value="base-mainnet" selected>Base Mainnet</option>
+                <option value="base-sepolia">Base Sepolia</option>
+                <option value="custom">Custom</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>RPC URL</span>
+              <input
+                id="rpcUrl"
+                placeholder="https://mainnet.base.org (optional for mainnet)"
+              />
+            </label>
+          </div>
+          <div class="row">
+            <label class="field">
+              <span>Contract Address</span>
+              <input
+                id="contractAddress"
+                placeholder="0x... (optional for mainnet)"
+              />
+            </label>
+            <label class="field">
+              <span>Chain ID (custom only)</span>
+              <input id="chainId" placeholder="8453" />
+            </label>
+          </div>
+          <div class="actions">
+            <button id="createClient" class="primary">Create Client</button>
+            <button id="resetClient" class="ghost">Reset</button>
+          </div>
+          <p class="muted">
+            Advanced config is optional. The simple flow defaults to Base mainnet + the known Prmission contract.
+          </p>
+        </section>
+
+        <section class="card advanced span2">
+          <h2>Read Methods (Advanced)</h2>
+
+          <div class="row">
+            <button data-read="getTreasury">getTreasury()</button>
+            <button data-read="getTotalProtocolFees">getTotalProtocolFees()</button>
+            <button data-read="getTrustedReviewers">getTrustedReviewers()</button>
+          </div>
+
+          <div class="row">
+            <button data-read="isIdentityEnforced">isIdentityEnforced()</button>
+            <button data-read="isReputationEnforced">isReputationEnforced()</button>
+          </div>
+
+          <div class="row">
+            <label class="field">
+              <span>Permission ID</span>
+              <input id="permissionId" value="1" />
+            </label>
+            <label class="field">
+              <span>Escrow ID</span>
+              <input id="escrowId" value="1" />
+            </label>
+            <label class="field">
+              <span>User Address</span>
+              <input id="userAddress" placeholder="0x..." />
+            </label>
+            <label class="field">
+              <span>Agent Address</span>
+              <input id="agentAddress" placeholder="0x..." />
+            </label>
+          </div>
+
+          <div class="row">
+            <label class="field">
+              <span>Agent ID</span>
+              <input id="agentId" value="0" />
+            </label>
+            <label class="field">
+              <span>Balance Address</span>
+              <input id="balanceAddress" placeholder="0x..." />
+            </label>
+          </div>
+
+          <div class="row">
+            <button data-read="getPermission">getPermission(permissionId)</button>
+            <button data-read="getUserPermissionIds">getUserPermissionIds(user)</button>
+            <button data-read="getUserPermissions">getUserPermissions(user)</button>
+            <button data-read="getActivePermissions">getActivePermissions(user)</button>
+          </div>
+
+          <div class="row">
+            <button data-read="checkAccess">checkAccess(permissionId, agent)</button>
+            <button data-read="getEscrow">getEscrow(escrowId)</button>
+            <button data-read="previewSettlement">previewSettlement(escrowId)</button>
+            <button data-read="checkAgentTrust">checkAgentTrust(agentId, agentAddress)</button>
+          </div>
+
+          <div class="row">
+            <button data-read="getBalance">getBalance(balanceAddress)</button>
+          </div>
+        </section>
+
+        <section class="card advanced span2">
+          <h2>Write Methods (Advanced)</h2>
+          <p class="muted">
+            Requires a connected wallet on the same network as the client.
+          </p>
+
+          <details class="details" open>
+            <summary>grantPermission</summary>
+            <div class="row">
+              <label class="field">
+                <span>Merchant (optional)</span>
+                <input id="wMerchant" placeholder="0x... (or blank for open)" />
+              </label>
+              <label class="field">
+                <span>Data Category</span>
+                <input id="wDataCategory" value="browsing" />
+              </label>
+              <label class="field">
+                <span>Purpose</span>
+                <input id="wPurpose" value="consented data access" />
+              </label>
+              <label class="field">
+                <span>Compensation (bps)</span>
+                <input id="wCompBps" value="2000" />
+              </label>
+            </div>
+            <div class="row">
+              <label class="field">
+                <span>Upfront Fee (USDC)</span>
+                <input id="wUpfrontFee" value="0.00" />
+              </label>
+              <label class="field">
+                <span>Validity (seconds)</span>
+                <input id="wValidity" value="86400" />
+              </label>
+              <button data-write="grantPermission" class="primary">
+                Send Transaction
+              </button>
+            </div>
+          </details>
+
+          <details class="details">
+            <summary>Escrow + outcome</summary>
+            <div class="row">
+              <label class="field">
+                <span>Permission ID</span>
+                <input id="wPermissionId" value="1" />
+              </label>
+              <label class="field">
+                <span>Escrow Amount (USDC)</span>
+                <input id="wEscrowAmount" value="0.01" />
+              </label>
+              <label class="field">
+                <span>Agent ID</span>
+                <input id="wAgentId" value="0" />
+              </label>
+              <button data-write="depositEscrow" class="primary">
+                depositEscrow
+              </button>
+            </div>
+            <div class="row">
+              <label class="field">
+                <span>Escrow ID</span>
+                <input id="wEscrowId" value="1" />
+              </label>
+              <label class="field">
+                <span>Outcome Value (USDC)</span>
+                <input id="wOutcomeValue" value="0.01" />
+              </label>
+              <label class="field">
+                <span>Outcome Type</span>
+                <input id="wOutcomeType" value="completed" />
+              </label>
+              <label class="field">
+                <span>Outcome Description</span>
+                <input id="wOutcomeDesc" value="example outcome" />
+              </label>
+              <button data-write="reportOutcome" class="primary">
+                reportOutcome
+              </button>
+            </div>
+          </details>
+
+          <details class="details">
+            <summary>Settlement</summary>
+            <div class="row">
+              <label class="field">
+                <span>Escrow ID</span>
+                <input id="wSettleEscrowId" value="1" />
+              </label>
+              <button data-write="settle" class="primary">settle</button>
+              <button data-write="refundEscrow" class="ghost">refundEscrow</button>
+            </div>
+            <div class="row">
+              <label class="field">
+                <span>Dispute Reason</span>
+                <input id="wDisputeReason" value="example dispute" />
+              </label>
+              <button data-write="disputeSettlement" class="ghost">
+                disputeSettlement
+              </button>
+            </div>
+          </details>
+
+          <details class="details">
+            <summary>Permission admin</summary>
+            <div class="row">
+              <label class="field">
+                <span>Permission ID</span>
+                <input id="wAdminPermissionId" value="1" />
+              </label>
+              <button data-write="revokePermission" class="ghost">
+                revokePermission
+              </button>
+              <button data-write="expirePermission" class="ghost">
+                expirePermission
+              </button>
+            </div>
+          </details>
+
+          <details class="details">
+            <summary>USDC allowance</summary>
+            <div class="row">
+              <label class="field">
+                <span>Amount (USDC)</span>
+                <input id="wAllowanceAmount" value="0.10" />
+              </label>
+              <button data-write="ensureAllowance" class="ghost">
+                ensureAllowance
+              </button>
+            </div>
+          </details>
+        </section>
+
+        <section class="card span2">
+          <h2>Output</h2>
+          <div class="status" id="status">Ready.</div>
+          <pre class="output" id="output">{}</pre>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -22,7 +22,13 @@ The official TypeScript SDK for Prmission — a consent-gated escrow protocol fo
 
 ## 🎬 Live Demo
 
-👉 https://prmission-demo123.netlify.app
+This repo includes a simple UI playground (Vite) under `examples/ui`.
+
+To host it on Netlify, connect the repo in `app.netlify.com` and deploy.
+The included `netlify.toml` sets:
+
+- Build command: `npm run ui:build`
+- Publish directory: `examples/ui/dist`
 
 ## 🖥 Interactive Interface
 
@@ -82,38 +88,43 @@ Use cases for a world where agents transact directly with users on-chain:
 - ## Quickstart Example
 
 ```ts
-import { PrmissionClient, parseUsdc, formatUsdc } from "prmission-sdk";
+import { PrmissionClient, PrmissionNetwork, parseUsdc } from "prmission-sdk";
 import { ethers } from "ethers";
 
-const client = new PrmissionClient({
-  contractAddress: "0x0c8B16a57524f4009581B748356E01e1a969223d",
-  rpcUrl: "https://mainnet.base.org",
+// Read-only client (no signer required)
+const created = PrmissionClient.create({
+  network: PrmissionNetwork.BaseMainnet,
 });
+if (!created.ok) throw created.error;
+const client = created.value;
 
+// Write client (requires a signer)
 const provider = new ethers.BrowserProvider(window.ethereum);
 const signer = await provider.getSigner();
-client.connect(signer);
+const write = client.withSigner(signer);
 
-const permissionId = await client.grantPermission({
-  dataCategory: "browsing-history",
-  purpose: "ad personalisation",
+const permissionIdResult = await write.grantPermission({
+  dataCategory: "browsing",
+  purpose: "consented data access",
   compensationBps: 2000,
   validityPeriod: 86400,
 });
+if (!permissionIdResult.ok) throw permissionIdResult.error;
+const permissionId = permissionIdResult.value;
 
-const escrowId = await client.depositEscrow(
-  permissionId,
-  parseUsdc("50.00"),
-);
+const escrowIdResult = await write.depositEscrow(permissionId, parseUsdc("1.00"));
+if (!escrowIdResult.ok) throw escrowIdResult.error;
+const escrowId = escrowIdResult.value;
 
-await client.reportOutcome({
+const reported = await write.reportOutcome({
   escrowId,
-  outcomeValue: parseUsdc("50.00"),
-  outcomeType: "ad-click",
-  outcomeDescription: "User clicked sponsored result",
+  outcomeValue: parseUsdc("1.00"),
+  outcomeType: "completed",
+  outcomeDescription: "example outcome",
 });
+if (!reported.ok) throw reported.error;
 
-await client.settle(escrowId);
+// Settlement is only possible after the dispute window.
 ```
 
 ## Constructor
@@ -221,6 +232,8 @@ cd prmission-ts-sdk
 npm install
 npm run build
 npm test
+npm run examples:smoke
+npm run ui:dev
 ```
 
 ## Links
